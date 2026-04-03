@@ -80,6 +80,54 @@ python --version
 
 ---
 
+### 6. 修改快捷键
+
+#### 方法一：通过 IDEA 设置界面（推荐）
+
+1. 进入 `File → Settings → Keymap`
+2. 在搜索框中输入 `渣渣逍`
+3. 可以看到两个动作：
+   - `渣渣逍翻译（气泡）` - 气泡翻译模式
+   - `渣渣逍翻译（替换）` - 替换翻译模式
+4. 右键点击动作名称，选择 `Add Keyboard Shortcut`
+5. 输入你想要的快捷键组合
+6. 点击 `OK` 保存
+
+#### 方法二：通过插件配置文件
+
+插件的默认快捷键定义在 `src/main/resources/META-INF/plugin.xml` 中：
+
+```xml
+<actions>
+    <action id="IdeaTranTranslateAction"
+            class="com.idea.tran.action.TranslateAction"
+            text="渣渣逍翻译（气泡）">
+        <add-to-group group-id="EditorPopupMenu" anchor="LAST"/>
+        <keyboard-shortcut keymap="$default" first-keystroke="control alt m"/>
+    </action>
+    <action id="IdeaTranTranslateReplaceAction"
+            class="com.idea.tran.action.TranslateActionReplace"
+            text="渣渣逍翻译（替换）">
+        <add-to-group group-id="EditorPopupMenu" anchor="LAST"/>
+        <keyboard-shortcut keymap="$default" first-keystroke="control alt r"/>
+    </action>
+</actions>
+```
+
+修改快捷键语法：
+- `control alt m` = Ctrl+Alt+M
+- `control shift m` = Ctrl+Shift+M
+- `alt m` = Alt+M
+- `ctrl shift alt m` = Ctrl+Shift+Alt+M
+
+修改后需要重新构建插件：
+
+```cmd
+.\gradlew.bat build
+```
+
+---
+
 ## 项目结构
 
 ```
