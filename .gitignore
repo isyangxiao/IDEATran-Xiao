@@ -26,9 +26,8 @@ Thumbs.db
 # Logs
 *.log
 
-# Large distribution files (distribute separately)
+# Large distribution files
 portable-python/
-portable-python.zip
 
 # Large model files (use portable-python.zip instead)
 *.safetensors
