@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+    <id>com.idea.tran</id>
+    <name>渣渣逍</name>
+    <vendor>IDEA Tran</vendor>
+
+    <description><![CDATA[
+        渣渣逍 - 离线英汉互译插件
+
+        Features:
+        - 离线翻译，使用 NLLB-200 模型
+        - 两种翻译模式：气泡显示 / 替换原文
+        - 自动检测语言方向
+
+        Shortcut Keys:
+        - Ctrl+Alt+M: 翻译（气泡显示）
+        - Ctrl+Alt+R: 翻译（替换原文）
+
+        Setup:
+        1. 解压 portable-python.zip 到 D:\
+        2. 配置 PATH: D:\portable-python\Python314
+        3. 安装插件，重启 IDEA
+
+        License: MIT
+    ]]></description>
+
+    <idea-version since-build="242"/>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+
+    <actions>
+        <action id="IdeaTranTranslateAction"
+                class="com.idea.tran.action.TranslateAction"
+                text="渣渣逍翻译（气泡）"
+                description="Translate selected text - show in balloon">
+            <add-to-group group-id="EditorPopupMenu" anchor="LAST"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt m"/>
+        </action>
+        <action id="IdeaTranTranslateReplaceAction"
+                class="com.idea.tran.action.TranslateActionReplace"
+                text="渣渣逍翻译（替换）"
+                description="Translate selected text - replace original">
+            <add-to-group group-id="EditorPopupMenu" anchor="LAST"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt r"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <configurable instance="com.idea.tran.settings.TranslationSettingsConfigurable"
+                      id="IdeaTranSettings"
+                      text="渣渣逍"/>
+
+        <toolWindow id="TranslationToolWindow"
+                    description="翻译历史"
+                    anchor="right"
+                    factoryClass="com.idea.tran.ui.TranslationToolWindowFactory"/>
+    </extensions>
+
+</idea-plugin>
