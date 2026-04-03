@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public class TranslationSettingsAction extends AnAction {
 
     /**
-     * 执行动作 - 打开设置页面
+     * 执行动作 - 打开设置The page
      *
      * @param e 动作事件
      */
